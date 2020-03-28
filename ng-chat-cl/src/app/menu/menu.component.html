@@ -1,0 +1,18 @@
+<div class="menu">
+    <ul class="menu-list">
+        <li routerLink="/">home</li>
+        <li routerLink="/chat">chat</li>
+        <li routerLink="/">auth</li>
+    </ul>
+
+    <div class="auth-controls">
+        <span *ngIf="userLogin">{{userLogin}}</span>
+        <div *ngIf="!userLogin" class="auth-controls-blc-entrance">
+            <button (click)="controlHandler($event)">sign in</button>
+            <button (click)="controlHandler($event)">sign up</button>
+        </div>
+        <div *ngIf="userLogin" class="auth-controls-blc-exit">
+            <button (click)="controlHandler($event)">sign out</button>
+        </div>
+    </div>
+</div>

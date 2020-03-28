@@ -1,0 +1,36 @@
+.menu {
+    border: 1px solid #4f576f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    &-list {
+        li {
+            display: inline-block;
+            padding: 1em;
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #ffffff;
+            background-color: #314569;
+            text-transform: capitalize;
+            border-right: 1px solid #4f576f;
+            transition: 0.3s;
+            cursor: pointer;
+            
+            &:hover {
+                background-color: transparent;
+                transition: 0.3s;
+            }
+        }
+    }
+
+    .auth-controls {
+        button {
+            text-transform: capitalize;
+        }
+    }
+}

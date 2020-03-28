@@ -1,0 +1,236 @@
+$clr-white: #ffffff;
+$clr-black: #000000;
+$clr-background: #282a36;
+$clr-green-light: rgb(73, 193, 162);
+$clr-purple: rgb(42, 28, 68);
+$clr-grey-light: #4f576f;
+$clr-grey-middle: #333543;
+$clr-grey-dark: #2c2e3a;
+$clr-yellow-light: #c0ff13;
+
+
+.chat {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .content {
+        max-width: 680px;
+        height: 400px;
+        padding: 1em 0.8em;
+        display: grid;
+        grid-template-areas: "blc-users blc-message-List"
+                             "blc-users blc-message-List"
+                             "blc-users blc-message-List"
+                             "blc-users blc-control-panel";
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 2fr 3fr 2fr 1fr;
+        background-color: $clr-background;
+        border: 1px solid $clr-grey-light;
+        border-radius: 8px;
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 0.9rem;
+            color: $clr-grey-light;
+            background-color: $clr-grey-dark;
+            border: 1px solid $clr-grey-middle;
+            border-radius: 5px;
+            outline: none;
+            transition: 0.3;
+
+            &:hover {
+                opacity: 0.7;
+                transition: 0.3;
+            }
+        }
+
+        input,
+        button {
+            min-height: 30px;
+            padding: 0.5em 0.8em;
+        }
+
+        .blc-users {
+            grid-area: blc-users;
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+
+            .user-search {
+                margin-bottom: 0.8em;
+            }
+
+            &-controls {
+                border-radius: 3px;
+                overflow: hidden;
+
+                button {
+                    width: 50%;
+                    font-size: 0.7rem;
+                    text-transform: capitalize;
+                    color: $clr-white;
+                    background-color: transparent;
+                    border: 1px solid $clr-grey-middle;
+                    outline: none;
+                    transition: 0.3s;
+
+                    &:hover {
+                        color: $clr-grey-light;
+                        transition: 0.3s;
+                    }
+                }
+            }
+
+            .user-list {
+                padding: 0.5em;
+                border: 1px solid transparent;
+                overflow: auto;
+
+                .user:not(:first-child) {
+                    margin-top: 0.8em;
+                }
+    
+                .user {
+                    display: flex;
+                    align-items: center;
+                    font-size: 0.8rem;
+                    color: $clr-green-light;
+                    position: relative;
+                    cursor: pointer;
+                    
+                    &:hover .user-name  {
+                        color: $clr-yellow-light;
+                        transition: 1s;
+                    }
+    
+                    &-ava {
+                        width: 50px;
+                        height: 50px;
+                        border: 1px solid $clr-grey-light;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        background-image: url('./img_cat.jpg');
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: 45% center;
+                    }
+    
+                    &-name {
+                        margin: 0 0.8em;
+                        line-height: 1.3;
+                        text-transform: capitalize;
+                    }
+
+                    &-cursor {
+                        position: absolute;
+                        right: 0;
+                    }
+
+                    &-unread-messages {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 15px;
+                        height: 15px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 0.5rem;
+                        color: $clr-white;
+                        background-color: $clr-black;
+                        border: 1px solid $clr-white;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+
+        .blc-message-List {
+            grid-area: blc-message-List;
+            padding: 1em;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+            .message-l,
+            .message-r {
+                max-width: 300px;
+                min-width: 100px;
+                margin-bottom: 1em;
+                padding: 0.9em;
+                display: flex;
+                flex-direction: column;
+                font-size: 0.7rem;
+                border: 1px solid $clr-grey-light;
+                border-radius: 5px;
+
+                &-user {
+                    color: $clr-green-light;
+                }
+
+                &-text,
+                &-date {
+                    margin-top: 0.3em;
+                }
+
+                &-text {
+                    font-size: 0.8rem;
+                    line-height: 1.5;
+                    color: $clr-white;
+                }
+
+                &-date {
+                    color: $clr-grey-light;
+                }
+            }
+
+            .message-l {
+                align-self: flex-start;
+                background-color: $clr-purple;
+            }
+            
+            .message-r {
+                align-self: flex-end;
+                background-color: $clr-grey-middle;
+            }   
+        }
+        
+        .blc-control-panel {
+            grid-area: blc-control-panel;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1em 0.2em;
+
+
+            input {
+                border-radius: 5px 0 0 5px;
+                color: $clr-grey-light;
+            }
+
+            button {
+                font-size: 0.9rem;
+                border: 1px solid $clr-grey-middle;
+                background-color: transparent;
+                border-radius: 0 5px 5px 0;
+                color: $clr-grey-light;
+                text-transform: capitalize;
+                transition: 0.3s;
+                
+                &:hover {
+                    background-color: $clr-purple;
+                    color: $clr-white;
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+}
+
+.btn-active{
+    border: 1px solid $clr-grey-light !important;
+}

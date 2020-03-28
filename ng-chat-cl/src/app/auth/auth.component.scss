@@ -1,0 +1,113 @@
+$clr-white: rgb(255, 255, 255);
+$clr-black: rgb(0, 0, 0);
+$clr-grey-light: rgb(225, 228, 229);
+$clr-grey-dark: rgb(169, 178, 185);
+$clr-green-light: rgb(73, 193, 162);
+$clr-green-dark: rgb(35, 158, 127);
+$clr-red-light: rgb(246,89,89);
+
+
+
+.auth {
+    margin-top: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    form {
+        width: 275px;
+        position: relative;
+        box-sizing: border-box;
+        background-color: $clr-white;
+        padding: 2em 1.5em;
+        border-radius: 3px;
+
+        h2 {
+            margin: 0.3em;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .blc-switcher {
+            position: absolute;
+            top: 0.2em;
+            right: 0.2em;
+    
+            button {
+                font-size: 0.7rem;
+                font-weight: 600;
+                color: $clr-green-light;
+                border: 1px solid transparent;
+                background-color: transparent;
+                text-transform: capitalize;
+                outline: none;
+                transition: 0.3s;
+
+                &:hover {
+                    color: $clr-black;
+                    text-decoration: underline;
+                    transition: 0.3s;
+                }
+            }
+        }
+
+        .form-group {
+            margin-top: 1em;
+            display: flex;
+            flex-direction: column;
+            color: $clr-grey-dark;
+
+            label {
+                width: fit-content;
+                font-size: 0.7rem;
+                margin-bottom: 0.5em;
+            }
+
+            .form-control,
+            button {
+                min-height: 30px;
+                border-radius: 3px;
+            }
+
+            .form-control {
+                padding: 0 0.8em;
+                color: $clr-grey-dark;
+                font-size: 0.8rem;
+                border: 1px solid $clr-grey-light;
+
+                &.invalid {
+                    border: 1px solid $clr-red-light;
+                }
+            }
+
+            button {
+                font-weight: 600;
+                padding: 0.6em 0;
+                color: $clr-white;
+                background-color: $clr-green-light;
+                border: 1px solid transparent;
+                text-transform: capitalize;
+                transition: 0.3s;
+                outline: none;
+
+                &:hover {
+                    background-color: $clr-green-dark;
+                    transition: 0.3s;
+                }
+                &.btn-invalid {
+                    background-color: $clr-green-light;
+                    cursor: no-drop;
+                }
+            }
+
+            .alert {
+                margin-top: 0.6em;
+                text-align: center;
+                font-size: 0.7em;
+                color: $clr-red-light;
+            }
+        }
+    }
+}

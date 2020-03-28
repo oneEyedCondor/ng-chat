@@ -1,0 +1,89 @@
+<div class="auth">
+    <form [formGroup]="authForm" (ngSubmit)="submitHandler()">
+        <h2>{{isAuthentication? 'sign up': 'sign in'}}</h2>
+
+        <div class="blc-switcher">
+            <button type="button" (click)="toggleAuthentication(false)">sign in</button>
+            <button type="button" (click)="toggleAuthentication(true)">sign up</button>
+        </div>
+
+        <div *ngIf="isAuthentication" 
+            class="form-group">
+            <label for="name">Username</label>
+            <input 
+                class="form-control" 
+                [class.invalid]="authForm.controls['userName'].invalid && authForm.controls['userName'].touched"
+                id="name" 
+                name="name" 
+                formControlName="userName"
+            />
+            <div class="alert"
+                *ngIf="authForm.controls['userName'].invalid && authForm.controls['userName'].touched">
+                name is required!
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input 
+                class="form-control"
+                [class.invalid]="authForm.controls['userLogin'].invalid && authForm.controls['userLogin'].touched" 
+                id="login" 
+                name="login" 
+                formControlName="userLogin"
+            />
+            <div class="alert"
+                *ngIf="authForm.controls['userLogin'].invalid && authForm.controls['userLogin'].touched">
+                login is required!
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+                class="form-control"
+                [class.invalid]="authForm.controls['userPassword'].invalid && authForm.controls['userPassword'].touched"
+                type="password" 
+                id="password" 
+                name="password" 
+                formControlName="userPassword"
+            />
+            <div class="alert alert-danger"
+                *ngIf="authForm.controls['userPassword'].invalid && authForm.controls['userPassword'].touched">
+                password is required!
+            </div>
+        </div>
+
+        <div *ngIf="isAuthentication"
+            class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input 
+                class="form-control"
+                [class.invalid]="authForm.controls['userConfirmPassword'].invalid && authForm.controls['userConfirmPassword'].touched"
+                type="password" 
+                id="confirmPassword" 
+                name="confirmPassword" 
+                formControlName="userConfirmPassword"
+            />
+            <div class="alert alert-danger"
+                *ngIf="authForm.controls['userConfirmPassword'].invalid && authForm.controls['userConfirmPassword'].touched">
+                confirm password is required!
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button
+                *ngIf="!isAuthentication"
+                [class.btn-invalid]="authForm.invalid"
+                class="btn-signin"
+                [disabled]="authForm.invalid"
+            >sign in</button>
+            <button
+                *ngIf="isAuthentication"
+                class="btn-signup"
+                [class.btn-invalid]="authForm.invalid"
+                [disabled]="authForm.invalid"
+            >sign up</button>
+        </div>
+    </form>
+</div>

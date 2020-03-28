@@ -1,0 +1,65 @@
+<div class="chat">
+    <div class="content">
+        <div class="blc-users">
+            <input
+                [(ngModel)]="searchVal"
+                class="user-search" 
+                type="text" 
+                placeholder="Search"
+            >
+            <div class="blc-users-controls">
+                <button
+                    [class.btn-active]="isGeneralChat"
+                    (click)="isGeneralChat=true; searchVal=''"
+                >general</button>
+                <button
+                    [class.btn-active]="!isGeneralChat"
+                    (click)="isGeneralChat=false; searchVal=''"
+                >private</button>
+            </div>
+            <div class="user-list">
+                <p *ngFor="let u of (isGeneralChat? usersOnline: allContacts) | except | search:searchVal"
+                    class="user"
+                    (click)="chooseConversation(u)"
+                >
+                    <span class="user-ava"></span>
+                    <span class="user-name">{{u.name}}</span>
+                    <span 
+                        *ngIf="!isGeneralChat && (u.login === interlocutor?.login)"
+                        class="user-cursor"
+                    >></span>
+                    <span 
+                        *ngIf="!isGeneralChat && u.unread"
+                        class="user-unread-messages"
+                    >{{u.unread}}</span>
+                </p>
+            </div>
+        </div>
+    
+        <div #MessageList class="blc-message-List">
+            <p *ngFor="let message of (isGeneralChat? generalMessages: messagesOfCorrespondence)"
+                [class]="(message.user.login === currentUser.login) ? 'message-r' : 'message-l'">
+                <span [class]="(message.user.login === currentUser.login) ? 'message-r-user' : 'message-l-user'">
+                    {{message.user.name}}
+                </span>
+                <span [class]="(message.user.login === currentUser.login) ? 'message-r-text' : 'message-l-text'">
+                    {{message.text}}
+                </span>
+                <span [class]="(message.user.login === currentUser.login) ? 'message-r-date' : 'message-l-date'">
+                    {{message.date | date:'dd-MM-yyyy HH:mm:ss'}}
+                </span>
+            </p>
+        </div>
+    
+        <div class="blc-control-panel">
+            <input
+                #newMessage
+                (keydown.enter)="sendMessage(newMessage.value); newMessage.value=''"
+                type="text" 
+                placeholder="Write a message...">
+            <button (click)="sendMessage(newMessage.value); newMessage.value=''">
+                send
+            </button>
+        </div>
+    </div>
+</div>
